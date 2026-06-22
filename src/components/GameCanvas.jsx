@@ -147,6 +147,7 @@ export function GameCanvas() {
     const loop = new GameLoop();
     gameLoopRef.current = loop;
     const particles = new ParticleSystem();
+    const drops = [];
 
     const fogSystem = new FogSystem(CANVAS_WIDTH, CANVAS_HEIGHT, levelData.fogDensity || 0.4);
 
@@ -279,6 +280,15 @@ export function GameCanvas() {
                 { spreadX: 80, spreadY: 70, color: '#ddccbb', life: 0.6, size: 3 },
               );
               shakeCamera(4, 0.2);
+              if (Math.random() < 0.15) {
+                drops.push({
+                  x: enemy.x + enemy.width / 2 - 8,
+                  y: enemy.y + enemy.height / 2 - 8,
+                  width: 16, height: 16,
+                  collected: false,
+                  bob: Math.random() * Math.PI * 2,
+                });
+              }
             }
           }
         }
@@ -286,6 +296,16 @@ export function GameCanvas() {
         if (aabb(player, enemy.getHitbox())) {
           const knockDir = player.x < enemy.x ? -1 : 1;
           player.takeDamage(enemy.contactDamage, knockDir);
+        }
+      }
+
+      // --- Drops (heart pickups) ---
+      for (const drop of drops) {
+        if (drop.collected) continue;
+        if (aabb(player, drop) && player.hp < player.maxHp) {
+          drop.collected = true;
+          player.hp = Math.min(player.hp + 1, player.maxHp);
+          setHp(player.hp);
         }
       }
 
@@ -597,6 +617,29 @@ export function GameCanvas() {
 
       // --- Particles ---
       particles.render(ctx, camera);
+
+      // --- Drops (heart pickups) ---
+      for (const drop of drops) {
+        if (drop.collected) continue;
+        const hx = Math.round(drop.x - camera.x);
+        const hy = Math.round(drop.y - camera.y + Math.sin(torchTime * 3 + drop.bob) * 3);
+        ctx.save();
+        ctx.translate(hx + 8, hy + 8);
+        ctx.scale(1, 1);
+        ctx.fillStyle = '#ff2244';
+        ctx.beginPath();
+        ctx.moveTo(0, 3);
+        ctx.bezierCurveTo(-4, -2, -8, 2, 0, 8);
+        ctx.bezierCurveTo(8, 2, 4, -2, 0, 3);
+        ctx.fill();
+        ctx.fillStyle = '#ff6688';
+        ctx.beginPath();
+        ctx.moveTo(0, 4);
+        ctx.bezierCurveTo(-2, 1, -5, 3, 0, 7);
+        ctx.bezierCurveTo(5, 3, 2, 1, 0, 4);
+        ctx.fill();
+        ctx.restore();
+      }
 
       // --- Fog (atmospheric névoa) ---
       fogSystem.ensureCaches(ctx);
