@@ -1,0 +1,101 @@
+{
+  "rows": [
+    {
+      "name": "fly",
+      "frames": [
+        {
+          "x": 46,
+          "y": 62,
+          "width": 128,
+          "height": 124,
+          "anchorX": 110,
+          "anchorY": 185,
+          "anchorOffsetX": 0,
+          "anchorOffsetY": 0
+        },
+        {
+          "x": 204,
+          "y": 110,
+          "width": 182,
+          "height": 68,
+          "anchorX": 295,
+          "anchorY": 178,
+          "anchorOffsetX": -27,
+          "anchorOffsetY": 55
+        },
+        {
+          "x": 419,
+          "y": 115,
+          "width": 148,
+          "height": 69,
+          "anchorX": 492,
+          "anchorY": 183,
+          "anchorOffsetX": -9,
+          "anchorOffsetY": 55
+        }
+      ]
+    },
+    {
+      "name": "walk",
+      "frames": [
+        {
+          "x": 33,
+          "y": 257,
+          "width": 89,
+          "height": 164,
+          "anchorX": 75,
+          "anchorY": 421,
+          "anchorOffsetX": 0,
+          "anchorOffsetY": 0
+        },
+        {
+          "x": 183,
+          "y": 262,
+          "width": 82,
+          "height": 159,
+          "anchorX": 222,
+          "anchorY": 421,
+          "anchorOffsetX": 3,
+          "anchorOffsetY": 5
+        },
+        {
+          "x": 319,
+          "y": 259,
+          "width": 88,
+          "height": 162,
+          "anchorX": 364,
+          "anchorY": 421,
+          "anchorOffsetX": -3,
+          "anchorOffsetY": 2
+        },
+        {
+          "x": 458,
+          "y": 260,
+          "width": 100,
+          "height": 161,
+          "anchorX": 505,
+          "anchorY": 421,
+          "anchorOffsetX": -5,
+          "anchorOffsetY": 3
+        }
+      ]
+    },
+    {
+      "name": "death",
+      "frames": [
+        {
+          "x": 591,
+          "y": 374,
+          "width": 152,
+          "height": 51,
+          "anchorX": 677,
+          "anchorY": 424,
+          "anchorOffsetX": 0,
+          "anchorOffsetY": 0
+        }
+      ]
+    }
+  ],
+  "imageWidth": 768,
+  "imageHeight": 512
+}

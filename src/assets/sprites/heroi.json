@@ -1,0 +1,211 @@
+{
+  "rows": [
+    {
+      "name": "idle",
+      "frames": [
+        {
+          "x": 30,
+          "y": 13,
+          "width": 55,
+          "height": 92,
+          "anchorX": 57,
+          "anchorY": 105,
+          "anchorOffsetX": 0,
+          "anchorOffsetY": 0
+        },
+        {
+          "x": 122,
+          "y": 13,
+          "width": 56,
+          "height": 92,
+          "anchorX": 150,
+          "anchorY": 105,
+          "anchorOffsetX": -1,
+          "anchorOffsetY": 0
+        },
+        {
+          "x": 216,
+          "y": 13,
+          "width": 56,
+          "height": 92,
+          "anchorX": 244,
+          "anchorY": 105,
+          "anchorOffsetX": -1,
+          "anchorOffsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "run",
+      "frames": [
+        {
+          "x": 25,
+          "y": 121,
+          "width": 76,
+          "height": 82,
+          "anchorX": 64,
+          "anchorY": 202,
+          "anchorOffsetX": 0,
+          "anchorOffsetY": 0
+        },
+        {
+          "x": 135,
+          "y": 121,
+          "width": 76,
+          "height": 82,
+          "anchorX": 174,
+          "anchorY": 202,
+          "anchorOffsetX": 0,
+          "anchorOffsetY": 0
+        },
+        {
+          "x": 240,
+          "y": 121,
+          "width": 68,
+          "height": 82,
+          "anchorX": 274,
+          "anchorY": 202,
+          "anchorOffsetX": 5,
+          "anchorOffsetY": 0
+        },
+        {
+          "x": 335,
+          "y": 121,
+          "width": 63,
+          "height": 82,
+          "anchorX": 368,
+          "anchorY": 202,
+          "anchorOffsetX": 6,
+          "anchorOffsetY": 0
+        },
+        {
+          "x": 429,
+          "y": 121,
+          "width": 72,
+          "height": 80,
+          "anchorX": 467,
+          "anchorY": 201,
+          "anchorOffsetX": 1,
+          "anchorOffsetY": 1
+        },
+        {
+          "x": 535,
+          "y": 121,
+          "width": 69,
+          "height": 82,
+          "anchorX": 571,
+          "anchorY": 202,
+          "anchorOffsetX": 3,
+          "anchorOffsetY": 0
+        },
+        {
+          "x": 634,
+          "y": 121,
+          "width": 66,
+          "height": 82,
+          "anchorX": 670,
+          "anchorY": 202,
+          "anchorOffsetX": 3,
+          "anchorOffsetY": 0
+        }
+      ]
+    },
+    {
+      "name": "jump",
+      "frames": [
+        {
+          "x": 31,
+          "y": 211,
+          "width": 65,
+          "height": 93,
+          "anchorX": 63,
+          "anchorY": 304,
+          "anchorOffsetX": 0,
+          "anchorOffsetY": 0
+        },
+        {
+          "x": 143,
+          "y": 215,
+          "width": 63,
+          "height": 87,
+          "anchorX": 177,
+          "anchorY": 302,
+          "anchorOffsetX": -2,
+          "anchorOffsetY": 6
+        }
+      ]
+    },
+    {
+      "name": "attack",
+      "frames": [
+        {
+          "x": 22,
+          "y": 311,
+          "width": 73,
+          "height": 83,
+          "anchorX": 63,
+          "anchorY": 393,
+          "anchorOffsetX": 0,
+          "anchorOffsetY": 0
+        },
+        {
+          "x": 161,
+          "y": 311,
+          "width": 139,
+          "height": 83,
+          "anchorX": 204,
+          "anchorY": 393,
+          "anchorOffsetX": -2,
+          "anchorOffsetY": 0
+        },
+        {
+          "x": 335,
+          "y": 311,
+          "width": 181,
+          "height": 83,
+          "anchorX": 386,
+          "anchorY": 393,
+          "anchorOffsetX": -10,
+          "anchorOffsetY": 0
+        },
+        {
+          "x": 551,
+          "y": 311,
+          "width": 106,
+          "height": 83,
+          "anchorX": 592,
+          "anchorY": 394,
+          "anchorOffsetX": 0,
+          "anchorOffsetY": -1
+        }
+      ]
+    },
+    {
+      "name": "hurt",
+      "frames": [
+        {
+          "x": 31,
+          "y": 405,
+          "width": 66,
+          "height": 87,
+          "anchorX": 62,
+          "anchorY": 492,
+          "anchorOffsetX": 0,
+          "anchorOffsetY": 0
+        },
+        {
+          "x": 150,
+          "y": 407,
+          "width": 67,
+          "height": 85,
+          "anchorX": 183,
+          "anchorY": 492,
+          "anchorOffsetX": -2,
+          "anchorOffsetY": 2
+        }
+      ]
+    }
+  ],
+  "imageWidth": 768,
+  "imageHeight": 512
+}

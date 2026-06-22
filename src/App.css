@@ -1,0 +1,22 @@
+.game-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #000;
+}
+
+.game-wrapper {
+  position: relative;
+  width: 800px;
+  height: 480px;
+}
+
+.game-wrapper canvas {
+  display: block;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
