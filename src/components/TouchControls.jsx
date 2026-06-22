@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { input } from '../engine/input.js';
 
 const BTN_IDS = {
@@ -46,35 +46,35 @@ const btnBase = {
   justifyContent: 'center',
   fontFamily: 'monospace',
   fontWeight: 'bold',
-  cursor: 'pointer',
   touchAction: 'none',
   WebkitTapHighlightColor: 'transparent',
+  WebkitUserSelect: 'none',
+  userSelect: 'none',
 };
 
 export function TouchControls() {
-  const isTouchRef = useRef(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    isTouchRef.current = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    const touch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    const narrow = window.innerWidth <= 800;
+    setIsMobile(touch || narrow);
   }, []);
 
-  if (!isTouchRef.current && window.innerWidth > 800) return null;
+  if (!isMobile) return null;
 
   return (
     <div style={{
       position: 'absolute',
       inset: 0,
       zIndex: 25,
-      pointerEvents: 'none',
     }}>
-      {/* D-Pad */}
       <div style={{
         position: 'absolute',
         left: '5%',
         bottom: '18%',
         width: '38%',
         height: '55%',
-        pointerEvents: 'none',
       }}>
         <button
           style={{ ...btnBase, left: '35%', top: 0, width: '30%', height: '28%', fontSize: '1.2em' }}
@@ -100,20 +100,14 @@ export function TouchControls() {
           onTouchEnd={(e) => handleTouchEnd('down', BTN_IDS.down, e)}
           onTouchCancel={(e) => handleTouchEnd('down', BTN_IDS.down, e)}
         >&#9660;</button>
-        <div style={{
-          position: 'absolute', left: '35%', top: '36%', width: '30%', height: '28%',
-          borderRadius: '50%', background: 'rgba(255,255,255,0.05)',
-        }} />
       </div>
 
-      {/* Action buttons */}
       <div style={{
         position: 'absolute',
         right: '5%',
         bottom: '15%',
         width: '32%',
         height: '50%',
-        pointerEvents: 'none',
       }}>
         <button
           style={{ ...btnBase, right: '10%', bottom: 0, width: '50%', height: '50%', fontSize: '0.7em', background: 'rgba(255,200,50,0.15)', borderColor: 'rgba(255,200,50,0.4)' }}
