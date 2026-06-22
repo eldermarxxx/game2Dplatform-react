@@ -6,6 +6,7 @@ import { HUD } from './components/HUD.jsx';
 import {
   MainMenu, GameOver, Victory, LoadingScreen, LevelComplete, IntroVideo,
 } from './components/MainMenu.jsx';
+import { TouchControls } from './components/TouchControls.jsx';
 import './App.css';
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
             transition={{ duration: 0.2 }}
           >
             <div className="game-wrapper">
+              <TouchControls />
               {loading && <LoadingScreen />}
               <AnimatePresence>
                 {gameOver && (
