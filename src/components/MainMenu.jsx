@@ -303,23 +303,19 @@ export function IntroVideo() {
 
   return (
     <div style={{
-      position: 'absolute',
-      inset: 0,
       width: CANVAS_WIDTH,
       height: CANVAS_HEIGHT,
       background: '#000',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      zIndex: 10,
-    }}>
+      cursor: 'pointer',
+    }} onClick={() => setScreen('game')}>
       <video
         autoPlay
-        muted
         playsInline
-        style={{ width: '100%', height: '100%', objectFit: 'cover', cursor: 'pointer' }}
+        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
         onEnded={() => setScreen('game')}
-        onClick={() => setScreen('game')}
       >
         <source src={introVideoUrl} type="video/mp4" />
       </video>
