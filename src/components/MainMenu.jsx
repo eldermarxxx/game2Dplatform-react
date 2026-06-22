@@ -5,6 +5,7 @@ import { CANVAS_WIDTH, CANVAS_HEIGHT, COLORS } from '../engine/constants.js';
 import { TOTAL_LEVELS } from '../levels/index.js';
 import menuBgmUrl from '../assets/music/bgm.mp3';
 import menuBgUrl from '../assets/images/capa.jpg';
+import introVideoUrl from '../assets/video/menu-intro.mp4';
 
 const btnStyle = {
   padding: '14px 40px',
@@ -48,7 +49,7 @@ export function MainMenu() {
     if (bgm) {
       bgm.play().catch(() => {});
     }
-    setTimeout(() => setScreen('game'), 150);
+    setTimeout(() => setScreen('intro'), 150);
   };
 
   return (
@@ -294,5 +295,34 @@ export function LevelComplete() {
         MENU PRINCIPAL
       </motion.button>
     </motion.div>
+  );
+}
+
+export function IntroVideo() {
+  const setScreen = useGameStore((s) => s.setScreen);
+
+  return (
+    <div style={{
+      position: 'absolute',
+      inset: 0,
+      width: CANVAS_WIDTH,
+      height: CANVAS_HEIGHT,
+      background: '#000',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      zIndex: 10,
+    }}>
+      <video
+        autoPlay
+        muted
+        playsInline
+        style={{ width: '100%', height: '100%', objectFit: 'cover', cursor: 'pointer' }}
+        onEnded={() => setScreen('game')}
+        onClick={() => setScreen('game')}
+      >
+        <source src={introVideoUrl} type="video/mp4" />
+      </video>
+    </div>
   );
 }

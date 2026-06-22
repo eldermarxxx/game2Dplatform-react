@@ -4,7 +4,7 @@ import { useKeyboard } from './hooks/useKeyboard.js';
 import { GameCanvas } from './components/GameCanvas.jsx';
 import { HUD } from './components/HUD.jsx';
 import {
-  MainMenu, GameOver, Victory, LoadingScreen, LevelComplete,
+  MainMenu, GameOver, Victory, LoadingScreen, LevelComplete, IntroVideo,
 } from './components/MainMenu.jsx';
 import './App.css';
 
@@ -29,6 +29,17 @@ function App() {
             transition={{ duration: 0.2 }}
           >
             <MainMenu />
+          </motion.div>
+        )}
+        {screen === 'intro' && (
+          <motion.div
+            key="intro"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <IntroVideo />
           </motion.div>
         )}
         {screen === 'game' && (
