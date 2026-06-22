@@ -36,19 +36,19 @@ export function MainMenu() {
     bgm.loop = true;
     bgm.volume = 0.5;
     bgmRef.current = bgm;
+    bgm.play().catch(() => {});
     return () => {
       bgm.pause();
-      bgm.src = '';
       bgmRef.current = null;
     };
   }, []);
 
   const handleClick = () => {
     const bgm = bgmRef.current;
-    if (bgm && bgm.paused) {
+    if (bgm) {
       bgm.play().catch(() => {});
     }
-    setScreen('game');
+    setTimeout(() => setScreen('game'), 150);
   };
 
   return (
