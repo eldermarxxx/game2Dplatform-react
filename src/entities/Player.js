@@ -63,13 +63,14 @@ export class Player {
 
     this.animConfig = {
       idle:   { count: 6, fps: 8 },
-      run:    { count: 6, fps: 12 },
+      run:    { count: 6, fps: 12, pingPong: true },
       jump:   { count: 6, fps: 10 },
       attack: { count: 5, fps: 14 },
       hurt:   { count: 1, fps: 1 },
     };
     this.spritesheet = null;
     this.spriteFrame = 0;
+    this.spriteDir = 1;
     this.spriteTimer = 0;
   }
 
@@ -157,7 +158,12 @@ export class Player {
         this.vx = Math.sign(this.vx) * PLAYER_MAX_SPEED;
       }
       if (this.onGround) {
-        this.state = PlayerStates.RUN;
+        if (this.state !== PlayerStates.RUN) {
+          this.state = PlayerStates.RUN;
+          this.spriteFrame = 0;
+          this.spriteDir = 1;
+          this.spriteTimer = 0;
+        }
       }
     } else {
       if (Math.abs(this.vx) < PLAYER_FRICTION * dt) {
@@ -167,6 +173,9 @@ export class Player {
       }
       if (this.onGround && this.state !== PlayerStates.ATTACK) {
         this.state = PlayerStates.IDLE;
+        this.spriteFrame = 0;
+        this.spriteDir = 1;
+        this.spriteTimer = 0;
       }
     }
 
@@ -178,12 +187,16 @@ export class Player {
         this.jumpHoldTimer = 0;
         this.jumpHeld = true;
         this.jumps = 1;
+        this.spriteFrame = 0;
+        this.spriteDir = 1;
+        this.spriteTimer = 0;
       } else if (this.jumps < 2) {
         this.vy = PLAYER_JUMP_VELOCITY;
         this.state = PlayerStates.JUMP;
         this.jumpHoldTimer = 0;
         this.jumpHeld = true;
         this.spriteFrame = 0;
+        this.spriteDir = 1;
         this.spriteTimer = 0;
         this.jumps++;
       }
@@ -215,6 +228,7 @@ export class Player {
     this.whipTimer = this.attackDuration;
     this.stateTimer = this.attackDuration;
     this.spriteFrame = 0;
+    this.spriteDir = 1;
     this.spriteTimer = 0;
   }
 
@@ -254,6 +268,9 @@ export class Player {
       this.stateTimer -= dt;
       if (this.stateTimer <= 0) {
         this.state = PlayerStates.IDLE;
+        this.spriteFrame = 0;
+        this.spriteDir = 1;
+        this.spriteTimer = 0;
       }
     }
 
@@ -265,6 +282,9 @@ export class Player {
       }
       if (this.stateTimer <= 0) {
         this.state = this.onGround ? PlayerStates.IDLE : PlayerStates.JUMP;
+        this.spriteFrame = 0;
+        this.spriteDir = 1;
+        this.spriteTimer = 0;
       }
     }
 
@@ -288,7 +308,15 @@ export class Player {
       const frameDuration = 1 / anim.fps;
       if (this.spriteTimer >= frameDuration) {
         this.spriteTimer = 0;
-        this.spriteFrame = (this.spriteFrame + 1) % anim.count;
+        if (anim.pingPong) {
+          this.spriteFrame += this.spriteDir;
+          if (this.spriteFrame >= anim.count || this.spriteFrame < 0) {
+            this.spriteDir *= -1;
+            this.spriteFrame += this.spriteDir * 2;
+          }
+        } else {
+          this.spriteFrame = (this.spriteFrame + 1) % anim.count;
+        }
       }
     } else if (anim) {
       this.spriteFrame = 0;
