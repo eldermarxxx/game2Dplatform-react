@@ -16,6 +16,16 @@ import {
   COLORS,
 } from '../engine/constants.js';
 import { getTilesByType, getFreeformTilesByType } from '../engine/collision.js';
+import snd1 from '../assets/audio/dilera1.mp3';
+import snd2 from '../assets/audio/dilera2.mp3';
+import snd3 from '../assets/audio/dilera3.mp3';
+import snd4 from '../assets/audio/dilera4.mp3';
+import snd5 from '../assets/audio/dilera5.mp3';
+import snd6 from '../assets/audio/dilera6.mp3';
+import snd7 from '../assets/audio/dilera7.mp3';
+import snd8 from '../assets/audio/dilera8.mp3';
+
+const attackSounds = [snd1, snd2, snd3, snd4, snd5, snd6, snd7, snd8];
 
 export const PLAYER_SCALE = 0.42;
 
@@ -230,6 +240,10 @@ export class Player {
     this.spriteFrame = 0;
     this.spriteDir = 1;
     this.spriteTimer = 0;
+
+    const snd = new Audio(attackSounds[Math.floor(Math.random() * attackSounds.length)]);
+    snd.volume = 0.4;
+    snd.play().catch(() => {});
   }
 
   takeDamage(amount, knockbackDir) {
