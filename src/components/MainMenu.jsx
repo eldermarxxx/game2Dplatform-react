@@ -34,7 +34,7 @@ export function MainMenu() {
   useEffect(() => {
     const bgm = new Audio(menuBgmUrl);
     bgm.loop = true;
-    bgm.volume = 0.5;
+    bgm.volume = 0.15;
     bgmRef.current = bgm;
     return () => {
       bgm.pause();

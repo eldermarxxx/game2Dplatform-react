@@ -114,7 +114,7 @@ export function GameCanvas() {
 
     const bgm = new Audio(bgmUrl);
     bgm.loop = true;
-    bgm.volume = 0.5;
+    bgm.volume = 0.15;
     bgm.play().catch(() => {});
     bgmRef.current = bgm;
 
