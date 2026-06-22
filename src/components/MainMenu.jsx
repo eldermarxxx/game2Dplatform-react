@@ -58,21 +58,7 @@ export function MainMenu() {
       imageRendering: 'pixelated',
       gap: '24px',
     }}>
-      <motion.h1
-        initial={{ opacity: 0, y: -30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        style={{
-          fontFamily: 'monospace',
-          fontSize: '36px',
-          color: '#ffd700',
-          textShadow: '2px 2px 4px #000',
-          letterSpacing: '4px',
-          margin: 0,
-        }}
-      >
-        PALADINO
-      </motion.h1>
+      <div style={{ marginTop: '160px' }} />
       <motion.button
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
