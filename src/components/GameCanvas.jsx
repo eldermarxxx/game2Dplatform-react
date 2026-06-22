@@ -30,7 +30,7 @@ import {
   ENEMIES_SPRITE,
   ENEMIES_MANIFEST,
 } from '../assets/spriteConfig.js';
-import bgmUrl from '../assets/music/Coração de 16 Bits.mp3';
+import bgmUrl from '../assets/music/bgm.mp3';
 import bgImageUrl from '../assets/images/background.png';
 
 const TORCH_FRAMES = new Set([75, 76, 77, 78, 79, 126, 127]);
