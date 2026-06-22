@@ -1,8 +1,8 @@
 import { Spritesheet } from './Spritesheet.js';
 
 function isColorkey(r, g, b, a) {
-  // Magenta: high R and B, low G
-  if (r > 200 && g < 50 && b > 200) return true;
+  // Magenta JPG bg: R~170-180, G~40-50, B~120-130 (compressed from pure magenta)
+  if (r > 160 && g < 70 && b > 110) return true;
   // Dark purple fill (colorkey): R~15-45, G~10-35, B~25-55, very low saturation
   if (a > 10 && r >= 15 && r <= 50 && g >= 8 && g <= 40 && b >= 20 && b <= 60) {
     const avg = (r + g + b) / 3;
