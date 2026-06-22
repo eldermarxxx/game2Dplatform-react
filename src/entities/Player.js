@@ -242,7 +242,7 @@ export class Player {
     this.spriteTimer = 0;
 
     const snd = new Audio(attackSounds[Math.floor(Math.random() * attackSounds.length)]);
-    snd.volume = 0.4;
+    snd.volume = 0.8;
     snd.play().catch(() => {});
   }
 
