@@ -3,8 +3,8 @@ import { motion } from 'framer-motion';
 import { useGameStore } from '../store/gameStore.js';
 import { CANVAS_WIDTH, CANVAS_HEIGHT, COLORS } from '../engine/constants.js';
 import { TOTAL_LEVELS } from '../levels/index.js';
-import menuBgmUrl from '../assets/music/Castelo de Sangue 2.mp3';
-import menuBgUrl from '../assets/images/menu.png';
+import menuBgmUrl from '../assets/music/Coração de 16 Bits.mp3';
+import menuBgUrl from '../assets/images/capa.jpg';
 
 const btnStyle = {
   padding: '14px 40px',
@@ -34,7 +34,7 @@ export function MainMenu() {
   useEffect(() => {
     const bgm = new Audio(menuBgmUrl);
     bgm.loop = true;
-    bgm.volume = 0.15;
+    bgm.volume = 0.5;
     bgmRef.current = bgm;
     return () => {
       bgm.pause();
