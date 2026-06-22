@@ -17,6 +17,8 @@ import {
 } from '../engine/constants.js';
 import { getTilesByType, getFreeformTilesByType } from '../engine/collision.js';
 
+export const PLAYER_SCALE = 0.42;
+
 export const PlayerStates = {
   IDLE: 'idle',
   RUN: 'run',
@@ -60,11 +62,11 @@ export class Player {
     this.lastCheckpoint = null;
 
     this.animConfig = {
-      idle:   { count: 3, fps: 4 },
-      run:    { count: 7, fps: 10 },
-      jump:   { count: 2, fps: 6 },
-      attack: { count: 4, fps: 12 },
-      hurt:   { count: 2, fps: 8 },
+      idle:   { count: 6, fps: 8 },
+      run:    { count: 6, fps: 12 },
+      jump:   { count: 6, fps: 10 },
+      attack: { count: 5, fps: 14 },
+      hurt:   { count: 1, fps: 1 },
     };
     this.spritesheet = null;
     this.spriteFrame = 0;
@@ -323,16 +325,18 @@ export class Player {
     ctx.save();
 
     if (this.spritesheet) {
-      const frames = this.spritesheet.getStateFrames(this.state);
+      const stateName = this.state === 'hurt' || this.state === 'dead' ? 'idle' : this.state;
+      const frames = this.spritesheet.getStateFrames(stateName);
       if (frames && frames.length > 0) {
         const clampedFrame = Math.min(this.spriteFrame, frames.length - 1);
         this.spritesheet.draw(
           ctx,
-          this.state,
+          stateName,
           clampedFrame,
           this.centerX - camera.x,
           this.y + this.height - camera.y,
-          !this.facingRight
+          !this.facingRight,
+          PLAYER_SCALE
         );
       }
     } else {

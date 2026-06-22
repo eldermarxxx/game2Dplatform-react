@@ -2,9 +2,34 @@ const sharp = require('sharp');
 const path = require('path');
 const fs = require('fs');
 
-function isMagenta(r, g, b) {
+function detectBgColor(pixels, w, h, channels) {
+  if (channels >= 4) {
+    // If alpha channel exists, transparent = background
+    return null; // signal to use alpha check
+  }
+  let sumR = 0, sumG = 0, sumB = 0, n = 0;
+  for (let x = 0; x < w; x++) {
+    for (const y of [0, h - 1]) {
+      const i = (y * w + x) * channels;
+      sumR += pixels[i]; sumG += pixels[i + 1]; sumB += pixels[i + 2]; n++;
+    }
+  }
+  for (let y = 1; y < h - 1; y++) {
+    for (const x of [0, w - 1]) {
+      const i = (y * w + x) * channels;
+      sumR += pixels[i]; sumG += pixels[i + 1]; sumB += pixels[i + 2]; n++;
+    }
+  }
+  return { r: Math.round(sumR / n), g: Math.round(sumG / n), b: Math.round(sumB / n) };
+}
+
+function isBg(r, g, b, bg, a) {
+  if (bg === null) {
+    // Alpha-based detection
+    return a < 128;
+  }
   const tol = 50;
-  return r > 200 && g < 60 && b > 200;
+  return Math.abs(r - bg.r) < tol && Math.abs(g - bg.g) < tol && Math.abs(b - bg.b) < tol;
 }
 
 async function sliceSpritesheet(inputPath, rowNames) {
@@ -15,14 +40,18 @@ async function sliceSpritesheet(inputPath, rowNames) {
 
   const w = info.width;
   const h = info.height;
+  const channels = info.channels;
   const pixels = new Uint8Array(data);
+  const bg = detectBgColor(pixels, w, h, channels);
+  if (bg) console.log(`Detected bg color: RGB(${bg.r},${bg.g},${bg.b})`);
+  else console.log('Using alpha channel for background detection');
 
-  // Foreground mask (1 = non-magenta, 0 = bg)
+  // Foreground mask (1 = non-bg, 0 = bg)
   const fg = new Uint8Array(w * h);
   for (let y = 0; y < h; y++)
     for (let x = 0; x < w; x++) {
-      const i = (y * w + x) * 3;
-      fg[y * w + x] = isMagenta(pixels[i], pixels[i + 1], pixels[i + 2]) ? 0 : 1;
+      const i = (y * w + x) * channels;
+      fg[y * w + x] = isBg(pixels[i], pixels[i + 1], pixels[i + 2], bg, channels >= 4 ? pixels[i + 3] : 255) ? 0 : 1;
     }
 
   // Connected component labeling (4-directional) using flood fill

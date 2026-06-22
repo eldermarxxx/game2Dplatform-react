@@ -1,5 +1,5 @@
-import heroImg from './sprites/heroi.png';
-import heroManifest from './sprites/heroi.json';
+import heroImg from './sprites/dilera.png';
+import heroManifest from './sprites/dilera.json';
 import tilesetImg from './sprites/tileset.png';
 import tilesetManifest from './sprites/tileset.json';
 import enemiesImg from './sprites/enemies.png';
