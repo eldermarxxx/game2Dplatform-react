@@ -54,6 +54,7 @@ export function MainMenu() {
   return (
     <div style={{
       ...containerStyle,
+      position: 'relative',
       background: `url(${menuBgUrl}) no-repeat center center / cover`,
       imageRendering: 'pixelated',
       gap: '24px',
@@ -70,6 +71,18 @@ export function MainMenu() {
       >
         START NEW GAME
       </motion.button>
+      <div style={{
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        textAlign: 'center',
+        padding: '12px',
+        fontSize: '11px',
+        color: '#888',
+      }}>
+        by Elder Marx
+      </div>
     </div>
   );
 }
